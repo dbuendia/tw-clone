@@ -182,7 +182,7 @@ function App() {
                       </div>
 
                       {/* Si el tweet uid coincide con el user uid, mostrar borrar, o else no */}
-                      {elem.uid === user.uid && (
+                      {elem.uid === user?.uid && (
                         <>
                           <div className="action-container">
                             <span
