@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyABXvjIfF2X9Dk4t2vp9ppR2JhWdDN-PAs",
@@ -15,6 +16,15 @@ firebase.initializeApp(firebaseConfig);
 
 // Exporta la funcionalidad de la BD
 export const firestore = firebase.firestore();
+
+// El módulo de autenticación
+export const auth = firebase.auth();
+// El proveedor de autenticación
+export const provider = new firebase.auth.GoogleAuthProvider();
+// La utilidad para hacer el login con el pop up
+export const loginConGoogle = () => auth.signInWithPopup(provider);
+// La utilidad para hacer logout
+export const logout = () => auth.signOut();
 
 // Exporta el paquete firebase para otros usos
 export default firebase;

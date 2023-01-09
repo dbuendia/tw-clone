@@ -2,14 +2,33 @@
   box-sizing: border-box;
 }
 
+html {
+  /* background-color: antiquewhite; */
+}
+
 .App {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
 }
 
+.btn-log {
+  box-shadow: 1px 1px 1px grey;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  width: 100px;
+}
+
+.user-profile {
+  margin-top: 20px;
+}
+.user-profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;;
+}
+
 form {
   padding: 5% 10% 0 10%;
-
 }
 
 .textarea {
@@ -18,26 +37,88 @@ form {
   resize: none;
   padding: 10px;
   background-color: #f8f8f8;
+  border: none;
+  box-shadow: 1px 1px 1px grey;
 }
 
 .under-textarea {
-  display: flex;
+  /* display: flex;
   gap: 10px;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .under-textarea input {
   width: 100%;
   font-family: 'Courier New', Courier, monospace;
+  border: none;
+  box-shadow: 1px 1px 1px grey;
+}
+
+input[type="text"] {
+  padding: 0 10px;
+}
+
+input[type="button"]:active {
+  background-color: #f8f8f8;
 }
 
 .tw-container {
   padding: 10px 40px 10px 40px;
 }
+
 .tw {
   list-style: none;
   background-color: #f8f8f8;
-  margin: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 1px 1px 2px grey;
+}
+
+.autor {
+  color: pink;
+  text-shadow: 1px 1px 1px black;
+  padding-left: 20px;
+  flex-basis: 100%; /* Por defecto que ocupe 100% */
+  /* flex: 0 1 100%; */
   text-align: left;
 }
 
+.tweet {
+  flex-basis: 100%;
+  text-align: left;
+  padding: 20px;
+  background-color: lavenderblush;
+  margin: 20px;
+}
+
+.tw-actions-container {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  gap: 10px;
+}
+
+.delete {
+  color: red;
+}
+
+.delete:hover {
+  font-weight: bold;
+}
+
+.action-container {
+  background-color: buttonface;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+}
+
+.heart {
+  padding: 0 10px 0 0px;
+}
+
+.heart:hover {
+  color: red;
+}
