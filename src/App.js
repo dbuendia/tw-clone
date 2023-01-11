@@ -14,6 +14,7 @@ function App() {
     autor: "",
     uid: "",
     mail: "",
+    photoURL: "",
   });
   const [user, setUser] = useState(null);
   const [disabled, setDisabled] = useState("disabled");
@@ -28,6 +29,7 @@ function App() {
       .collection("tweets")
       .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((elem) => {
+          // console.log(elem.data().photoURL);
           return {
             tweet: elem.data().tweet,
             autor: elem.data().autor,
@@ -35,6 +37,7 @@ function App() {
             id: elem.id,
             email: elem.data().email,
             uid: elem.data().uid,
+            photoURL: elem.data().photoURL,
           };
         });
 
@@ -55,6 +58,7 @@ function App() {
   // Función genérica para ambos inputs
   const handleInputChange = (e) => {
     setDisabled("");
+    console.log(user.photoURL);
     let nuevoTweet = {
       // ...tweet, // Copiamos el estado anterior del objeto tweet con el spread operator
       // [e.target.name]: e.target.value, // Si en los inputs existe la propiedad que se llame como el valor de name, sustitúyelo por los e.target.value de ese input
@@ -62,6 +66,7 @@ function App() {
       uid: user.uid,
       email: user.email,
       autor: user.displayName,
+      photoURL: user.photoURL,
     };
     // Es decir, vamos actualizando cambio a cambios en los inputs y metiéndolos en un estado para enviar a firebase
     setTweet(nuevoTweet);

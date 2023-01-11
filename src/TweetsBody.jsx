@@ -8,12 +8,11 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
           ? tweets.map((elem) => {
               return (
                 <div key={elem.id}>
-                  {/* <img
+                  <img
                     className="user-profile-pic"
-                    src={user.photoURL}
-                    alt="User profile pic"
+                    src={elem.photoURL}
                     referrerPolicy="no-referrer" // Lo añado para que se muestre la img
-                  /> */}
+                  />
                   <li className="tw">
                     <p className="autor">@{elem.autor}</p>
                     <p className="tweet">{elem.tweet}</p>
