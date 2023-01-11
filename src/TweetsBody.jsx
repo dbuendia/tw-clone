@@ -1,3 +1,7 @@
+import bin from "./svg/bin.svg";
+import whiteHeart from "./svg/white-heart.svg";
+import redHeart from "./svg/red-heart.svg";
+
 const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
   console.log(typeof deleteTweet);
   return (
@@ -19,14 +23,27 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                       <p className="tweet">{elem.tweet}</p>
 
                       <div className="tw-actions-container">
+                        {/* TODO: Add dates */}
                         {/* <span>date</span> */}
                         <div className="action-container">
-                          <span
-                            className="heart"
-                            onClick={() => likeTweet(elem)}
-                          >
-                            ♡
-                          </span>
+                          {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
+                          {console.log(elem.likes)}
+                          {console.log(user.uid)}
+                          {elem.likes == user.uid ? (
+                            <img
+                              className="heart"
+                              src={redHeart}
+                              onClick={() => likeTweet(elem)}
+                            />
+                          ) : (
+                            <img
+                              className="heart"
+                              src={whiteHeart}
+                              onClick={() => likeTweet(elem)}
+                            />
+                          )}
+                          {/* <p>{elem.likes}</p> */}
+
                           <span className="like-counter">
                             {elem.likes ? elem.likes.length : 0}
                           </span>
@@ -36,12 +53,11 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                         {elem.uid === user?.uid && (
                           <>
                             <div className="action-container">
-                              <span
-                                className="delete"
+                              <img
+                                className="bin"
+                                src={bin}
                                 onClick={() => deleteTweet(elem.id)}
-                              >
-                                X
-                              </span>
+                              />
                             </div>
                           </>
                         )}

@@ -151,26 +151,15 @@ input[type="button"]:active {
   gap: 10px;
 }
 
-.delete {
-  color: red;
-}
-
-.delete:hover {
-  font-weight: bold;
-}
-
 .action-container {
-  background-color: buttonface;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50px;
+  color: white;
 }
 
 .heart {
   padding: 0 10px 0 0px;
-}
-
-.heart:hover {
-  color: red;
+  height: 20px;
 }
