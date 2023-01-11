@@ -1,7 +1,12 @@
 import { loginConGoogle } from "./firebase";
-import test from "./svg/test.svg";
 
-const TweetWritingArea = ({ user, tweet, handleInputChange, sendTweet }) => {
+const TweetWritingArea = ({
+  user,
+  tweet,
+  handleInputChange,
+  sendTweet,
+  disabled,
+}) => {
   return (
     <div className="tweet-writing-area">
       {user ? (
@@ -14,10 +19,11 @@ const TweetWritingArea = ({ user, tweet, handleInputChange, sendTweet }) => {
               referrerPolicy="no-referrer" // Lo añado para que se muestre la img
             />
           </div>
+          <p className="greeting">¡Hi, {user.displayName}!</p>
         </>
       ) : (
         <div className="user-profile">
-          <button className="btn-log" onClick={loginConGoogle}>
+          <button className="btn btn-log" onClick={loginConGoogle}>
             Login con Google
           </button>
         </div>
@@ -34,12 +40,12 @@ const TweetWritingArea = ({ user, tweet, handleInputChange, sendTweet }) => {
         />
         <div className="under-textarea">
           <input
-            className="btn-send"
+            className="btn btn-send"
             type="button"
             value="Send"
             onClick={sendTweet}
+            disabled={disabled}
           />
-          <img src={test}></img>
         </div>
       </form>
     </div>

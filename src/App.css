@@ -4,7 +4,7 @@
 
 :root {
   --main-background: #2e132c;
-  --tweet-writing-area-background: #150714;
+  --dark-background: #150714;
   --accent: #5f275b;
 }
 
@@ -13,6 +13,7 @@
   font-family: 'Courier New', Courier, monospace;
   display: flex;
   flex-direction: column;
+  font-family: 'Fira Code', monospace;
 }
 
 .header {
@@ -27,26 +28,26 @@
 }
 
 .tweet-writing-area {
-  /* display: flex; */
-  /* justify-content: center; */
-  background-color: var(--tweet-writing-area-background);
+  background-color: var(--dark-background);
   color: white;
+  padding: 0 20% 0 20%;
 }
 
 .tweets-body {
   background-color: var(--main-background);
+  display: flex;
+  justify-content: center;
 }
 
 .btn-log {
-  box-shadow: 1px 1px 1px grey;
-  border: none;
-  font-family: 'Courier New', Courier, monospace;
-  width: 100px;
+  background-color: var(--accent);
+  border: 1px solid var(--dark-background);
 }
 
 .user-profile {
   padding-top: 20px;
 }
+
 .user-profile-pic {
   width: 100px;
   height: 100px;
@@ -64,9 +65,10 @@ form {
   resize: none;
   padding: 10px;
   border: none;
-  box-shadow: 1px 1px 1px grey;
+  border: 1px solid var(--accent);
   background-color: var(--main-background);
   color: white;
+  font-family: 'Fira Code', monospace;
 }
 
 .under-textarea {
@@ -74,11 +76,20 @@ form {
   justify-content: right;
 }
 
+.btn {
+  width: 150px;
+  height: 40px;
+  color: white;
+  font-family: 'Silkscreen', cursive;
+}
+
+.btn-send:disabled {
+  display: none;
+}
+
 .btn-send {
-  width: 200px;
-  font-family: 'Courier New', Courier, monospace;
-  border: none;
-  box-shadow: 1px 1px 1px grey;
+  background-color: var(--accent);
+  border: 1px solid var(--main-background);
 }
 
 input[type="text"] {
@@ -103,20 +114,26 @@ input[type="button"]:active {
 }
 
 .autor {
-  color: pink;
-  text-shadow: 1px 1px 1px black;
-  padding-left: 20px;
-  flex-basis: 100%; /* Por defecto que ocupe 100% */
+  color: var(--dark-background);
+  font-size: 24px;
+  text-shadow: 1px 1px black;
+  /* flex-basis: 100%;  */
+  /* Por defecto que ocupe 100% */
   /* flex: 0 1 100%; */
   text-align: left;
+  font-family: 'Silkscreen', cursive;
+  background-color: var(--accent);
+  margin-left: 20px;
+  padding: 10px;
 }
 
 .tweet {
   flex-basis: 100%;
   text-align: left;
-  padding: 20px;
-  background-color: lavenderblush;
   margin: 20px;
+  padding: 20px;
+  color: white;
+  background-color: var(--accent);
 }
 
 .tw-actions-container {

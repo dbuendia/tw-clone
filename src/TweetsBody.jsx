@@ -3,14 +3,19 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
   return (
     <div className="tweets-body">
       <ul className="tw-container">
-        <p>Tweets:</p>
         {/* Si tweets no está vacío, lo recorremos para mostrarlo por UI */}
         {tweets
           ? tweets.map((elem) => {
               return (
                 <div key={elem.id}>
+                  {/* <img
+                    className="user-profile-pic"
+                    src={user.photoURL}
+                    alt="User profile pic"
+                    referrerPolicy="no-referrer" // Lo añado para que se muestre la img
+                  /> */}
                   <li className="tw">
-                    <p className="autor">Autor: @{elem.autor}</p>
+                    <p className="autor">@{elem.autor}</p>
                     <p className="tweet">{elem.tweet}</p>
 
                     <div className="tw-actions-container">

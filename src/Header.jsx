@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="header">
       <img className="logo" src={logo} />
-      <button className="btn-log" onClick={logout}>
+      <button className="btn btn-log" onClick={logout}>
         Log out
       </button>
     </div>

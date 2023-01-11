@@ -16,6 +16,7 @@ function App() {
     mail: "",
   });
   const [user, setUser] = useState(null);
+  const [disabled, setDisabled] = useState("disabled");
 
   // Get tweets
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
 
   // Función genérica para ambos inputs
   const handleInputChange = (e) => {
+    setDisabled("");
     let nuevoTweet = {
       // ...tweet, // Copiamos el estado anterior del objeto tweet con el spread operator
       // [e.target.name]: e.target.value, // Si en los inputs existe la propiedad que se llame como el valor de name, sustitúyelo por los e.target.value de ese input
@@ -106,6 +108,7 @@ function App() {
         user={user}
         handleInputChange={handleInputChange}
         sendTweet={sendTweet}
+        disabled={disabled}
       />
       <TweetsBody
         tweets={tweets}
