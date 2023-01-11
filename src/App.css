@@ -2,13 +2,39 @@
   box-sizing: border-box;
 }
 
-html {
-  /* background-color: antiquewhite; */
+:root {
+  --main-background: #2e132c;
+  --tweet-writing-area-background: #150714;
+  --accent: #5f275b;
 }
 
 .App {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: var(--main-background);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 40px;
+}
+
+.tweet-writing-area {
+  /* display: flex; */
+  /* justify-content: center; */
+  background-color: var(--tweet-writing-area-background);
+  color: white;
+}
+
+.tweets-body {
+  background-color: var(--main-background);
 }
 
 .btn-log {
@@ -19,7 +45,7 @@ html {
 }
 
 .user-profile {
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .user-profile-pic {
   width: 100px;
@@ -28,7 +54,8 @@ html {
 }
 
 form {
-  padding: 5% 10% 0 10%;
+  padding: 20px 10% 0 10%;
+  margin-bottom: 30px;
 }
 
 .textarea {
@@ -36,19 +63,19 @@ form {
   height: 50px;
   resize: none;
   padding: 10px;
-  background-color: #f8f8f8;
   border: none;
   box-shadow: 1px 1px 1px grey;
+  background-color: var(--main-background);
+  color: white;
 }
 
 .under-textarea {
-  /* display: flex;
-  gap: 10px;
-  justify-content: center; */
+  display: flex;
+  justify-content: right;
 }
 
-.under-textarea input {
-  width: 100%;
+.btn-send {
+  width: 200px;
   font-family: 'Courier New', Courier, monospace;
   border: none;
   box-shadow: 1px 1px 1px grey;
@@ -68,11 +95,11 @@ input[type="button"]:active {
 
 .tw {
   list-style: none;
-  background-color: #f8f8f8;
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 1px 1px 2px grey;
+  /* box-shadow: 1px 1px 1px 1px grey; */
+  border-bottom: 1px solid var(--accent)
 }
 
 .autor {

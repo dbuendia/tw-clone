@@ -1,6 +1,9 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { firestore, auth, loginConGoogle, logout } from "./firebase";
+import { firestore, auth } from "./firebase";
+import Header from "./Header";
+import TweetsBody from "./TweetsBody";
+import TweetWritingArea from "./TweetWritingArea";
 
 function App() {
   // Contenedor de todos los tweets que recibimos de firebase:
@@ -16,27 +19,7 @@ function App() {
 
   // Get tweets
   useEffect(() => {
-    // firestore
-    //   .collection("tweets")
-    //   .get()
-    //   .then((snapshot) => {
-    //     // Realmente nuestros tweets están en un array en:
-    //     // console.log(
-    //     //   snapshot.docs[0]._delegate._document.data.value.mapValue.fields
-    //     // );
-    //     // Pero también podemos hacer:
-    //     // Un map sobre snapshot.docs (quien tiene los docs)
-    //     // Para retornar un array de objetos por cada doc que exista
-    //     const tweets = snapshot.docs.map((elem) => {
-    //       return {
-    //         // Y llamar a la función .data() que nos da los campos que necesitemos:
-    //         tweet: elem.data().tweet,
-    //         autor: elem.data().autor,
-    //         id: elem.id,
-    //       };
-    //     });
-
-    // En realidad, para abrir una comunicación fija con la BD
+    // Para abrir una comunicación fija con la BD
     // Y que se escuchen y actualicen los cambios automáticamente usaremos la función onSnapshot
     // En realidad el código lo vamos a encerrar en una constante que contendrá el return de esa función on snapshot, pero el código se ejecutará igualmente
     // The listener can be cancelled by calling the function that is returned when on snapshot is called
@@ -117,90 +100,19 @@ function App() {
 
   return (
     <div className="App">
-      {user ? (
-        <>
-          <div className="user-profile">
-            <img
-              className="user-profile-pic"
-              src={user.photoURL}
-              alt="User profile pic"
-              referrerPolicy="no-referrer" // Lo añado para que se muestre la img
-            />
-            <p>¡Hola, {user.displayName}!</p>
-            <button className="btn-log" onClick={logout}>
-              Log out
-            </button>
-          </div>
-        </>
-      ) : (
-        <div className="user-profile">
-          <button className="btn-log" onClick={loginConGoogle}>
-            Login con Google
-          </button>
-        </div>
-      )}
-
-      <form>
-        <textarea
-          name="tweet" // mismo nombre que la propiedad del objeto
-          className="textarea"
-          type="text"
-          placeholder="Escribe un tweet..."
-          value={tweet.tweet}
-          onChange={handleInputChange}
-        />
-        <div className="under-textarea">
-          {/* <input
-            name="autor" // mismo nombre que la key del objeto
-            type="text"
-            placeholder="Autor"
-            value={tweet.autor}
-            onChange={handleInputChange}
-          /> */}
-          <input type="button" value="Enviar" onClick={sendTweet} />
-        </div>
-      </form>
-      <ul className="tw-container">
-        <p>Tweets:</p>
-        {/* Si tweets no está vacío, lo recorremos para mostrarlo por UI */}
-        {tweets
-          ? tweets.map((elem) => {
-              return (
-                <div key={elem.id}>
-                  <li className="tw">
-                    <p className="autor">Autor: @{elem.autor}</p>
-                    <p className="tweet">{elem.tweet}</p>
-
-                    <div className="tw-actions-container">
-                      <div className="action-container">
-                        <span className="heart" onClick={() => likeTweet(elem)}>
-                          ♡
-                        </span>
-                        <span className="like-counter">
-                          {elem.likes ? elem.likes.length : 0}
-                        </span>
-                      </div>
-
-                      {/* Si el tweet uid coincide con el user uid, mostrar borrar, o else no */}
-                      {elem.uid === user?.uid && (
-                        <>
-                          <div className="action-container">
-                            <span
-                              className="delete"
-                              onClick={() => deleteTweet(elem.id)}
-                            >
-                              X
-                            </span>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </li>
-                </div>
-              );
-            })
-          : null}
-      </ul>
+      <Header />
+      <TweetWritingArea
+        tweet={tweet}
+        user={user}
+        handleInputChange={handleInputChange}
+        sendTweet={sendTweet}
+      />
+      <TweetsBody
+        tweets={tweets}
+        user={user}
+        likeTweet={likeTweet}
+        deleteTweet={deleteTweet}
+      />
     </div>
   );
 }
