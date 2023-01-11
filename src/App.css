@@ -104,6 +104,14 @@ input[type="button"]:active {
   padding: 10px 40px 10px 40px;
 }
 
+.photo-tw-container {
+  display: flex;
+}
+
+.photo-tw-container .user-profile-pic {
+  padding: 22px;
+}
+
 .tw {
   list-style: none;
   margin-bottom: 20px;
