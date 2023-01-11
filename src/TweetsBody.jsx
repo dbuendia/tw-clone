@@ -27,9 +27,10 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                         {/* <span>date</span> */}
                         <div className="action-container">
                           {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
-                          {console.log(elem.likes)}
-                          {console.log(user.uid)}
-                          {elem.likes == user.uid ? (
+                          {/* {console.log(elem.likes)} */}
+                          {/* {console.log(user.uid)} */}
+                          {/* NO FUNCIONA SI NO SE ESTÁ LOGUEADO, INVESTIGAR POR Q */}
+                          {elem?.likes == user?.uid ? (
                             <img
                               className="heart"
                               src={redHeart}
@@ -43,7 +44,6 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                             />
                           )}
                           {/* <p>{elem.likes}</p> */}
-
                           <span className="like-counter">
                             {elem.likes ? elem.likes.length : 0}
                           </span>
