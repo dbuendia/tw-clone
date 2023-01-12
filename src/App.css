@@ -71,6 +71,10 @@ form {
   font-family: 'Fira Code', monospace;
 }
 
+.textarea::placeholder {
+  color: white;
+}
+
 .under-textarea {
   display: flex;
   justify-content: right;
@@ -113,6 +117,7 @@ input[type="button"]:active {
 }
 
 .tw {
+  width: 90%;
   list-style: none;
   margin-bottom: 20px;
   display: flex;
