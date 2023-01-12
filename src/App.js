@@ -12,7 +12,7 @@ function App() {
   const [tweet, setTweet] = useState({
     tweet: "",
     autor: "",
-    likes: "",
+    likes: [],
     uid: "",
     mail: "",
     photoURL: "",
@@ -66,6 +66,7 @@ function App() {
       email: user.email,
       autor: user.displayName,
       photoURL: user.photoURL,
+      likes: [],
     };
     // Es decir, vamos actualizando cambio a cambios en los inputs y metiéndolos en un estado para enviar a firebase
     setTweet(nuevoTweet);

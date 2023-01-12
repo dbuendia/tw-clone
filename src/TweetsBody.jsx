@@ -26,9 +26,9 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                         {/* <span>date</span> */}
                         <div className="action-container">
                           {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
-                          {console.log(
+                          {/* {console.log(
                             Boolean(elem?.likes.find((uid) => uid === user.uid))
-                          )}
+                          )} */}
 
                           {Boolean(
                             elem?.likes.find((uid) => uid === user.uid)
@@ -46,7 +46,7 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                             />
                           )}
                           <span className="like-counter">
-                            {elem.likes ? elem.likes.length : 0}
+                            {elem?.likes ? elem.likes.length : 0}
                           </span>
                         </div>
 
