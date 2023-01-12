@@ -159,6 +159,11 @@ input[type="button"]:active {
   color: white;
 }
 
+.date {
+  color: white;
+  padding-right: 10px;
+}
+
 .heart {
   padding: 0 10px 0 0px;
   height: 20px;

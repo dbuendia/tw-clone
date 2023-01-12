@@ -16,6 +16,7 @@ function App() {
     uid: "",
     mail: "",
     photoURL: "",
+    fecha: "",
   });
   const [user, setUser] = useState(null);
   const [disabled, setDisabled] = useState("disabled");
@@ -30,6 +31,7 @@ function App() {
       .collection("tweets")
       .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((elem) => {
+          console.log(elem.data());
           return {
             tweet: elem.data().tweet,
             autor: elem.data().autor,
@@ -38,6 +40,7 @@ function App() {
             email: elem.data().email,
             uid: elem.data().uid,
             photoURL: elem.data().photoURL,
+            fecha: elem.data().fecha,
           };
         });
 
@@ -58,6 +61,8 @@ function App() {
   // Función genérica para ambos inputs
   const handleInputChange = (e) => {
     setDisabled("");
+    const currentDate = new Date();
+    const fecha = currentDate.getTime();
     let nuevoTweet = {
       // ...tweet, // Copiamos el estado anterior del objeto tweet con el spread operator
       // [e.target.name]: e.target.value, // Si en los inputs existe la propiedad que se llame como el valor de name, sustitúyelo por los e.target.value de ese input
@@ -67,6 +72,7 @@ function App() {
       autor: user.displayName,
       photoURL: user.photoURL,
       likes: [],
+      fecha: fecha,
     };
     // Es decir, vamos actualizando cambio a cambios en los inputs y metiéndolos en un estado para enviar a firebase
     setTweet(nuevoTweet);
@@ -85,7 +91,6 @@ function App() {
 
   const likeTweet = (tweet) => {
     let newLikes = tweet.likes;
-    // console.log("New likes: " + newLikes);
     // 1. Verificar que en la lista de likes no esté tu UID
     // Tweet.likes devolverá undefined o un array de UIDs del usuario
     // 2. Si hay likes...
@@ -115,11 +120,6 @@ function App() {
     }
 
     // Da un like
-    // Likes tiene que ser iguala lo que hubiera en likes
-    //+ new likes
-    // console.log("old" + tweet.likes);
-    // console.log("new" + newLikes);
-    // console.log(tweet.likes.concat(newLikes));
     firestore.doc(`tweets/${tweet.id}`).update({ likes: newLikes });
   };
 
