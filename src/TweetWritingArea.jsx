@@ -37,8 +37,11 @@ const TweetWritingArea = ({
           placeholder="What's happening?"
           value={tweet.tweet}
           onChange={handleInputChange}
-          id="dani"
         />
+        <div className="tweet-length-counter">
+          <span>{tweet.tweet.length}</span>
+          <span>200 Max.</span>
+        </div>
         <div className="under-textarea">
           <input
             className="btn btn-send"

@@ -75,6 +75,16 @@ form {
   color: white;
 }
 
+.tweet-length-counter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tweet-length-counter  span:nth-child(2) {
+  color: red;
+}
+
 .under-textarea {
   display: flex;
   justify-content: right;

@@ -75,7 +75,9 @@ function App() {
       fecha: fecha,
     };
     // Es decir, vamos actualizando cambio a cambios en los inputs y metiéndolos en un estado para enviar a firebase
-    setTweet(nuevoTweet);
+    if (nuevoTweet.tweet.length < 200 + 1) {
+      setTweet(nuevoTweet);
+    }
   };
 
   const sendTweet = (e) => {
