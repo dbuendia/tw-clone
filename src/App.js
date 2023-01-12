@@ -31,7 +31,7 @@ function App() {
       .collection("tweets")
       .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((elem) => {
-          console.log(elem.data());
+          // console.log(elem.data());
           return {
             tweet: elem.data().tweet,
             autor: elem.data().autor,
@@ -83,6 +83,11 @@ function App() {
     e.preventDefault();
     // Enviamos al tweet a la colección deseada
     firestore.collection("tweets").add(tweet);
+    // Cuando se haga el sendTweet, borrar lo que esté en el value
+    let emptyTweet = {
+      tweet: "",
+    };
+    setTweet(emptyTweet);
   };
 
   const deleteTweet = (id) => {

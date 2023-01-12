@@ -37,6 +37,7 @@ const TweetWritingArea = ({
           placeholder="What's happening?"
           value={tweet.tweet}
           onChange={handleInputChange}
+          id="dani"
         />
         <div className="under-textarea">
           <input
