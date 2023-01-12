@@ -7,6 +7,15 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
   tweets.sort(function (a, b) {
     return b.fecha - a.fecha;
   });
+
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
   return (
     <div className="tweets-body">
       <ul className="tw-container">
@@ -28,7 +37,10 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                       <div className="tw-actions-container">
                         {/* TODO: Add dates */}
                         <span className="date">
-                          {new Date(elem.fecha).toLocaleString("es-ES")}
+                          {new Date(elem.fecha).toLocaleString(
+                            "es-ES",
+                            options
+                          )}
                         </span>
                         <div className="action-container">
                           {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
