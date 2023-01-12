@@ -3,7 +3,6 @@ import whiteHeart from "./svg/white-heart.svg";
 import redHeart from "./svg/red-heart.svg";
 
 const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
-  console.log(typeof deleteTweet);
   return (
     <div className="tweets-body">
       <ul className="tw-container">
@@ -27,10 +26,13 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                         {/* <span>date</span> */}
                         <div className="action-container">
                           {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
-                          {/* {console.log(elem.likes)} */}
-                          {/* {console.log(user.uid)} */}
-                          {/* NO FUNCIONA SI NO SE ESTÁ LOGUEADO, INVESTIGAR POR Q */}
-                          {elem?.likes == user?.uid ? (
+                          {console.log(
+                            Boolean(elem?.likes.find((uid) => uid === user.uid))
+                          )}
+
+                          {Boolean(
+                            elem?.likes.find((uid) => uid === user.uid)
+                          ) ? (
                             <img
                               className="heart"
                               src={redHeart}
@@ -43,7 +45,6 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                               onClick={() => likeTweet(elem)}
                             />
                           )}
-                          {/* <p>{elem.likes}</p> */}
                           <span className="like-counter">
                             {elem.likes ? elem.likes.length : 0}
                           </span>

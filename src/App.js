@@ -12,6 +12,7 @@ function App() {
   const [tweet, setTweet] = useState({
     tweet: "",
     autor: "",
+    likes: "",
     uid: "",
     mail: "",
     photoURL: "",
@@ -29,7 +30,6 @@ function App() {
       .collection("tweets")
       .onSnapshot((snapshot) => {
         const tweets = snapshot.docs.map((elem) => {
-          // console.log(elem.data().photoURL);
           return {
             tweet: elem.data().tweet,
             autor: elem.data().autor,
@@ -58,7 +58,6 @@ function App() {
   // Función genérica para ambos inputs
   const handleInputChange = (e) => {
     setDisabled("");
-    console.log(user.photoURL);
     let nuevoTweet = {
       // ...tweet, // Copiamos el estado anterior del objeto tweet con el spread operator
       // [e.target.name]: e.target.value, // Si en los inputs existe la propiedad que se llame como el valor de name, sustitúyelo por los e.target.value de ese input
@@ -84,24 +83,42 @@ function App() {
   };
 
   const likeTweet = (tweet) => {
-    // Verificar que en la lista de likes no esté tu UID
-    // Devuelve o undefined o el UID del usuario
-    let newLikes = [];
-    if (tweet.likes) {
-      // vamos a verificar si el uid existe en el array de likes
+    let newLikes = tweet.likes;
+    // console.log("New likes: " + newLikes);
+    // 1. Verificar que en la lista de likes no esté tu UID
+    // Tweet.likes devolverá undefined o un array de UIDs del usuario
+    // 2. Si hay likes...
+    if (tweet.likes.length !== 0) {
+      // ... Vamos a verificar si el uid del usuario existe en el array de likes
       const userHasLiked = Boolean(
+        // Cast a booleano del string de UID si lo encuentra:
         tweet.likes.find((elem) => elem === user.uid)
       );
       if (userHasLiked) {
+        // 3. Si el usuario ya hecho like en ese tweet...
+        // Lo filtramos fuera en un array de nuevos likes
+        // (Sólo incluimos los uid que no sean como el de nuestro usuario)
         newLikes = tweet.likes.filter((likeUid) => likeUid !== user.uid);
       } else {
+        // Hay likes en el array pero nuestro usuario
+        // no había hecho like en ese tweet...
+        // 4. Incluímos su uid en el array de likes
+        // console.log("El usuario no había dado like a este tw.");
         newLikes.push(user.uid);
       }
     } else {
+      // Si no había likes en el tweet, directamente metemos el uid del usuario en el array de likes
+      // console.log("No había likes en este tweet, añado el UID directamente");
+      // He puesto el .length porque: Sólo llegabamos aquí la primera vez que se le da like a un tweet
       newLikes.push(user.uid);
     }
 
     // Da un like
+    // Likes tiene que ser iguala lo que hubiera en likes
+    //+ new likes
+    // console.log("old" + tweet.likes);
+    // console.log("new" + newLikes);
+    // console.log(tweet.likes.concat(newLikes));
     firestore.doc(`tweets/${tweet.id}`).update({ likes: newLikes });
   };
 
