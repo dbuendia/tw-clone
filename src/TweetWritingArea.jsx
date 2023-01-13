@@ -70,7 +70,7 @@ const TweetWritingArea = ({
             <span>{MAX_TWITTER_LENGTH - tweet.tweet.length}</span>
           )}
           {MAX_TWITTER_LENGTH - tweet.tweet.length <= 0 && (
-            <span>Max. length of message exceeded!</span>
+            <span>200 chars exceeded!</span>
           )}
         </div>
         {tweet.tweet.length > 0 && (
