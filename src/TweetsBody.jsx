@@ -1,8 +1,9 @@
 import bin from "./svg/bin.svg";
 import whiteHeart from "./svg/white-heart.svg";
 import redHeart from "./svg/red-heart.svg";
+import loadingIcon from "./svg/oval-loader.svg";
 
-const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
+const TweetsBody = ({ tweets, likeTweet, user, deleteTweet, loading }) => {
   // Ordenamos los tweets por fecha
   tweets.sort(function (a, b) {
     return b.fecha - a.fecha;
@@ -32,6 +33,7 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet }) => {
                     />
                     <li className="tw">
                       <p className="autor">@{elem.autor}</p>
+                      {loading ? <img src={loadingIcon}></img> : null}
                       <p className="tweet">{elem.tweet}</p>
 
                       <div className="tw-actions-container">

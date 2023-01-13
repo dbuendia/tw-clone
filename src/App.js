@@ -20,9 +20,11 @@ function App() {
   });
   const [user, setUser] = useState(null);
   const [disabled, setDisabled] = useState("disabled");
+  const [loading, setLoading] = useState(false);
 
   // Get tweets
   useEffect(() => {
+    console.log("me he montado");
     // Para abrir una comunicación fija con la BD
     // Y que se escuchen y actualicen los cambios automáticamente usaremos la función onSnapshot
     // En realidad el código lo vamos a encerrar en una constante que contendrá el return de esa función on snapshot, pero el código se ejecutará igualmente
@@ -30,8 +32,9 @@ function App() {
     const cancelarSuscripcion = firestore
       .collection("tweets")
       .onSnapshot((snapshot) => {
+        // console.log("pongo loading en true");
+        // setLoading(true);
         const tweets = snapshot.docs.map((elem) => {
-          // console.log(elem.data());
           return {
             tweet: elem.data().tweet,
             autor: elem.data().autor,
@@ -47,6 +50,7 @@ function App() {
         // Seteamos nuestro estado (array de tweets que recibimos de firebase)
         // Sirve para cargar los tweets iniciales que hubiera en la db
         setTweets(tweets);
+        setLoading(false);
       });
 
     auth.onAuthStateChanged((user) => {
@@ -89,6 +93,7 @@ function App() {
     let emptyTweet = {
       tweet: "",
     };
+    setLoading(true);
     setTweet(emptyTweet);
   };
 
@@ -145,6 +150,7 @@ function App() {
         user={user}
         likeTweet={likeTweet}
         deleteTweet={deleteTweet}
+        loading={loading}
       />
     </div>
   );
