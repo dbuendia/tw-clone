@@ -6,6 +6,7 @@
   --main-background: #2e132c;
   --dark-background: #150714;
   --accent: #5f275b;
+  --red-accent: #f50d5a;
 }
 
 .App {
@@ -23,6 +24,7 @@
   justify-content: space-between;
 }
 
+
 .logo {
   height: 40px;
 }
@@ -32,6 +34,29 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  color: white;
+  justify-content: space-around;
+}
+
+.login-header {
+  font-family: 'Silkscreen', cursive;
+  font-size: 50px;
+}
+
+.login-google {
+  margin-top: 50px;
+}
+
+.copyright {
+  color: var(--accent);
+}
+
+.beta {
+  color: var(--red-accent);
+}
+
+.login-footer {
+  margin-top: 50%;
 }
 
 .tweet-writing-area {
