@@ -26,7 +26,6 @@ function App() {
 
   // Get tweets
   useEffect(() => {
-    console.log("me he montado");
     // Para abrir una comunicación fija con la BD
     // Y que se escuchen y actualicen los cambios automáticamente usaremos la función onSnapshot
     // En realidad el código lo vamos a encerrar en una constante que contendrá el return de esa función on snapshot, pero el código se ejecutará igualmente
@@ -50,7 +49,6 @@ function App() {
         // Seteamos nuestro estado (array de tweets que recibimos de firebase)
         // Sirve para cargar los tweets iniciales que hubiera en la db
         setTweets(tweets);
-        console.log("Pongo loading en false:");
         setLoading(false);
       });
 
@@ -94,7 +92,6 @@ function App() {
     let emptyTweet = {
       tweet: "",
     };
-    console.log("Pongo loading en true: ");
     setLoading(true);
     setTweet(emptyTweet);
   };
@@ -145,7 +142,7 @@ function App() {
             path="/"
             element={
               <>
-                <Login />
+                <Login user={user} />
               </>
             }
           />

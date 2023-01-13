@@ -65,6 +65,11 @@
   padding: 0 20% 0 20%;
 }
 
+.greeting {
+  font-family: 'Fira Code', cursive;
+  margin: 10px 0 0 0;
+}
+
 .tweets-body {
   background-color: var(--main-background);
   display: flex;

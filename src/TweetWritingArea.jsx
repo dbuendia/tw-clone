@@ -1,5 +1,7 @@
-import { useState } from "react";
 import { loginConGoogle } from "./firebase";
+import { logout } from "./firebase";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TweetWritingArea = ({
   user,
@@ -8,8 +10,22 @@ const TweetWritingArea = ({
   sendTweet,
   disabled,
 }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const goToTwitter = () => navigate("/tw");
+    const goToLogin = () => navigate("/");
+
+    if (user) {
+      goToTwitter();
+    } else {
+      goToLogin();
+    }
+  }, [user]);
+
   return (
     <div className="tweet-writing-area">
+      {console.log("user is " + user)}
       {user ? (
         <>
           <div className="user-profile">
@@ -43,15 +59,17 @@ const TweetWritingArea = ({
           <span>{tweet.tweet.length}</span>
           <span>200 Max.</span>
         </div>
-        <div className="under-textarea">
-          <input
-            className="btn btn-send"
-            type="button"
-            value="Send"
-            onClick={sendTweet}
-            disabled={disabled}
-          />
-        </div>
+        {tweet.tweet.length > 0 && (
+          <div className="under-textarea">
+            <input
+              className="btn btn-send"
+              type="button"
+              value="Post"
+              onClick={sendTweet}
+              disabled={disabled}
+            />
+          </div>
+        )}
       </form>
     </div>
   );
