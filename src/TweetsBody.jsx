@@ -49,7 +49,7 @@ const TweetsBody = ({ tweets, likeTweet, user, deleteTweet, loading }) => {
                           <div className="action-container">
                             {/* Si el UID del autor está dentro del array de likes, mostrar rojo */}
                             {Boolean(
-                              elem?.likes.find((uid) => uid === user?.uid)
+                              elem?.likes?.find((uid) => uid === user?.uid)
                             ) ? (
                               <img
                                 className="heart"

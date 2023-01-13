@@ -11,6 +11,7 @@ const TweetWritingArea = ({
   disabled,
 }) => {
   const navigate = useNavigate();
+  const MAX_TWITTER_LENGTH = 200;
 
   useEffect(() => {
     const goToTwitter = () => navigate("/tw");
@@ -25,7 +26,6 @@ const TweetWritingArea = ({
 
   return (
     <div className="tweet-writing-area">
-      {console.log("user is " + user)}
       {user ? (
         <>
           <div className="user-profile">
@@ -47,27 +47,41 @@ const TweetWritingArea = ({
       )}
 
       <form>
-        <textarea
-          name="tweet" // mismo nombre que la propiedad del objeto
-          className="textarea"
-          type="text"
-          placeholder="What's happening?"
-          value={tweet.tweet}
-          onChange={handleInputChange}
-        />
+        <div className="flex-container">
+          <textarea
+            name="tweet" // mismo nombre que la propiedad del objeto
+            className="textarea"
+            type="text"
+            placeholder="What's happening?"
+            value={tweet.tweet}
+            onChange={handleInputChange}
+          />
+          <input
+            className="btn btn-send"
+            type="button"
+            value="Post"
+            onClick={sendTweet}
+            disabled={disabled}
+          />
+        </div>
         <div className="tweet-length-counter">
-          <span>{tweet.tweet.length}</span>
-          <span>200 Max.</span>
+          {/* Si faltan 50 chars, avisamos al user */}
+          {MAX_TWITTER_LENGTH - tweet.tweet.length <= 50 && (
+            <span>{MAX_TWITTER_LENGTH - tweet.tweet.length}</span>
+          )}
+          {MAX_TWITTER_LENGTH - tweet.tweet.length <= 0 && (
+            <span>Max. length of message exceeded!</span>
+          )}
         </div>
         {tweet.tweet.length > 0 && (
           <div className="under-textarea">
-            <input
+            {/* <input
               className="btn btn-send"
               type="button"
               value="Post"
               onClick={sendTweet}
               disabled={disabled}
-            />
+            /> */}
           </div>
         )}
       </form>

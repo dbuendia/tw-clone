@@ -81,6 +81,10 @@ function App() {
     if (nuevoTweet.tweet.length < 200 + 1) {
       setTweet(nuevoTweet);
     }
+
+    if (nuevoTweet.tweet.length <= 0) {
+      setDisabled("disabled");
+    }
   };
 
   const sendTweet = (e) => {
@@ -94,6 +98,7 @@ function App() {
     };
     setLoading(true);
     setTweet(emptyTweet);
+    setDisabled("disabled");
   };
 
   const deleteTweet = (id) => {

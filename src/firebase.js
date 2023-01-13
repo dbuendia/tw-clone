@@ -21,6 +21,12 @@ export const firestore = firebase.firestore();
 export const auth = firebase.auth();
 // El proveedor de autenticación
 export const provider = new firebase.auth.GoogleAuthProvider();
+
+// Obliga a seleccionar una cueta
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
 // La utilidad para hacer el login con el pop up
 export const loginConGoogle = () => auth.signInWithPopup(provider);
 // La utilidad para hacer logout

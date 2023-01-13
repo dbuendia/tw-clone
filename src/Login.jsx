@@ -20,7 +20,7 @@ const Login = ({ user }) => {
 
   return (
     <div className="login-page">
-      <img src={logo}></img>
+      <img className="login-logo" src={logo}></img>
       <div>
         <h1 className="login-header">The Ultimate Tw Clone</h1>
         <p>

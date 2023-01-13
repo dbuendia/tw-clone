@@ -30,6 +30,7 @@
 }
 
 .login-page {
+  padding: 20px;
   background-color: var(--main-background);
   height: 100vh;
   display: flex;
@@ -47,6 +48,10 @@
   margin-top: 50px;
 }
 
+.login-google:hover {
+  cursor: pointer;
+}
+
 .copyright {
   color: var(--accent);
 }
@@ -62,7 +67,7 @@
 .tweet-writing-area {
   background-color: var(--dark-background);
   color: white;
-  padding: 0 20% 0 20%;
+  padding: 0 15% 0 15%;
 }
 
 .greeting {
@@ -96,8 +101,9 @@
 }
 
 form {
-  padding: 20px 10% 0 10%;
-  margin-bottom: 30px;
+  /* padding: 20px 10% 0 10%; */
+  margin: 20px 0 0 30px;
+  /* margin-bottom: 30px; */
 }
 
 .textarea {
@@ -126,9 +132,9 @@ form {
   color: red;
 }
 
-.under-textarea {
+.flex-container {
   display: flex;
-  justify-content: right;
+  gap: 20px;
 }
 
 .btn {
@@ -139,7 +145,7 @@ form {
 }
 
 .btn-send:disabled {
-  display: none;
+  cursor: not-allowed;
 }
 
 .btn-send {
@@ -223,4 +229,58 @@ input[type="button"]:active {
 .heart {
   padding: 0 10px 0 0px;
   height: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .login-logo {
+    width: 50%;
+  }
+
+  .login-footer {
+    margin-top: 20%;
+  }
+
+  .login-google {
+    width: 80%;
+  }
+}
+
+@media (max-width: 375px) {
+  .photo-tw-container .user-profile-pic {
+    display: none
+  }
+  .autor {
+    font-size: 15px;
+  }
+
+  .tw {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .tw-container {
+    margin-top: 10px;
+  }
+
+  .photo-tw-container {
+    display: block;
+  }
+  .autor {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .tweet {
+    margin-left: 0;
+  }
+  .tw {
+    width: 100%;
+  }
 }
