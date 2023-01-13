@@ -27,6 +27,13 @@
   height: 40px;
 }
 
+.login-page {
+  background-color: var(--main-background);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .tweet-writing-area {
   background-color: var(--dark-background);
   color: white;
@@ -37,6 +44,10 @@
   background-color: var(--main-background);
   display: flex;
   justify-content: center;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
 }
 
 .btn-log {

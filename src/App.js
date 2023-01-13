@@ -1,9 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { firestore, auth } from "./firebase";
+import Login from "./Login";
 import Header from "./Header";
 import TweetsBody from "./TweetsBody";
 import TweetWritingArea from "./TweetWritingArea";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   // Contenedor de todos los tweets que recibimos de firebase:
@@ -32,8 +34,6 @@ function App() {
     const cancelarSuscripcion = firestore
       .collection("tweets")
       .onSnapshot((snapshot) => {
-        // console.log("pongo loading en true");
-        // setLoading(true);
         const tweets = snapshot.docs.map((elem) => {
           return {
             tweet: elem.data().tweet,
@@ -50,6 +50,7 @@ function App() {
         // Seteamos nuestro estado (array de tweets que recibimos de firebase)
         // Sirve para cargar los tweets iniciales que hubiera en la db
         setTweets(tweets);
+        console.log("Pongo loading en false:");
         setLoading(false);
       });
 
@@ -93,6 +94,7 @@ function App() {
     let emptyTweet = {
       tweet: "",
     };
+    console.log("Pongo loading en true: ");
     setLoading(true);
     setTweet(emptyTweet);
   };
@@ -136,23 +138,43 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header />
-      <TweetWritingArea
-        tweet={tweet}
-        user={user}
-        handleInputChange={handleInputChange}
-        sendTweet={sendTweet}
-        disabled={disabled}
-      />
-      <TweetsBody
-        tweets={tweets}
-        user={user}
-        likeTweet={likeTweet}
-        deleteTweet={deleteTweet}
-        loading={loading}
-      />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Login />
+              </>
+            }
+          />
+          <Route
+            path="/tw"
+            element={
+              <>
+                <Header />
+                <TweetWritingArea
+                  tweet={tweet}
+                  user={user}
+                  handleInputChange={handleInputChange}
+                  sendTweet={sendTweet}
+                  disabled={disabled}
+                />
+                <TweetsBody
+                  tweets={tweets}
+                  user={user}
+                  likeTweet={likeTweet}
+                  deleteTweet={deleteTweet}
+                  loading={loading}
+                />
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
